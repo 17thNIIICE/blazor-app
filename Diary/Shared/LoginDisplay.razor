@@ -1,0 +1,17 @@
+﻿@page "/authentication"
+@using MudBlazor
+
+<AuthorizeView>
+    <Authorized>
+        <a href="Identity/Account/Manage">Hello, @context.User.Identity?.Name!</a>
+        <form method="post" action="Identity/Account/LogOut">
+            <button type="submit" class="nav-link btn btn-link">Log out</button>
+        </form>
+    </Authorized>
+    <NotAuthorized>
+        <MudLayout>
+            <a class="register--link" href="Identity/Account/Register">Register</a>
+            <a class="log-in--link" href="Identity/Account/Login">Log in</a>
+        </MudLayout>
+    </NotAuthorized>
+</AuthorizeView>  

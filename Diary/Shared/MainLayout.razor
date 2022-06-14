@@ -1,0 +1,39 @@
+﻿@using MudBlazor
+@inherits LayoutComponentBase
+
+<PageTitle>Diary</PageTitle>
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<AuthorizeView>
+    <Authorized>
+        <MudLayout>
+            <MudAppBar>
+                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+                My Diary
+            </MudAppBar>
+            <MudDrawer @bind-Open="@_drawerOpen">
+                <NavMenu/>
+            </MudDrawer>
+            <MudMainContent>
+                @Body
+            </MudMainContent>
+        </MudLayout>
+    </Authorized>
+    <NotAuthorized>
+        <MudLayout>
+            <LoginDisplay/>
+        </MudLayout>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}
